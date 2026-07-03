@@ -35,7 +35,7 @@ export const projectsData = [
   },
   {
     title: 'Valeo VIM-HSE',
-    description: 'A centralized Incident Management Application to streamline the recording, tracking, and resolution of Health, Safety, and Environment (HSE) incidents.',
+    description: 'A centralized Incident Management Application to streamline the recording, tracking, and resolution of Health, Safety, and Environment (HSE) incidents. ',
     tech: 'React, Node.js, MongoDB, REST APIs',
     iconName: 'ShieldAlert' 
   },
