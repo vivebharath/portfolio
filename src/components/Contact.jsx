@@ -7,6 +7,7 @@ export default function Contact() {
     name: "",
     email: "",
     message: "",
+    time:""
   });
 
   // 2. Manage submission status state
@@ -38,6 +39,7 @@ export default function Contact() {
       name: formData.name, 
       email: formData.email, 
       message: formData.message, 
+      time: new Date().toLocaleString()
     };
 
     // Use emailjs.send() instead of sendForm()
