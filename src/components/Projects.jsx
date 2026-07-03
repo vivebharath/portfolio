@@ -42,10 +42,10 @@ export default function Projects() {
                 <p className="text-sm font-bold text-gray-500 mb-8 uppercase tracking-wider">
                   Stack: {project.tech}
                 </p>
-                {/* Notice: You can link this button to an expanded case study page later if you want */}
+                {/* Notice: You can link this button to an expanded case study page later if you want
                 <a href="#contact" className="bg-blue-600 text-white px-8 py-3 rounded font-bold hover:bg-blue-700 transition shadow-md inline-block uppercase tracking-wide">
                   Discuss Project
-                </a>
+                </a> */}
               </div>
             </div>
           ))}
