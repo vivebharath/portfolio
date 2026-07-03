@@ -91,7 +91,7 @@ export default function Projects() {
 
                     {/* Styled Stack Environment Badges */}
                     <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-50">
-                      {project.environment.map((techItem, idx) => (
+                      {project.usedSkils.map((techItem, idx) => (
                         <span 
                           key={idx} 
                           className="bg-gray-100 hover:bg-gray-200 transition text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-md"
