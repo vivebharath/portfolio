@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="flex space-x-4">
             <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" className="hover:text-blue-500 transition"><FiLinkedin size={22} /></a>
             <a href={socialLinks.github} target="_blank" rel="noreferrer" className="hover:text-blue-500 transition"><FiGithub size={22} /></a>
-            <a href={`mailto:${personalInfo.email}`} className="hover:text-blue-500 transition"><Mail size={22} /></a>
+            {/* <a href={`mailto:${personalInfo.email}`} className="hover:text-blue-500 transition"><Mail size={22} /></a> */}
           </div>
         </div>
       </div>
