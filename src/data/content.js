@@ -1,8 +1,8 @@
 export const personalInfo = {
-  name: "Vivek Narasingaperumal",
+  name: "XYZ",
   initials: "VN",
   email: "vivebharath@gmail.com",
-  heroHeading: "HEY, I'M VIVEK",
+  heroHeading: "HEY, I'M Jhon",
   heroBio: "With a strong foundation in web technologies, I am an adaptable Full Stack Developer who excels in transforming complex ideas into elegant, functional, and user-centric digital ecosystems.",
   footerBio: "An adaptable Full Stack Developer who excels in transforming complex ideas into elegant, functional, and user-centric digital ecosystems."
 };
