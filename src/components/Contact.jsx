@@ -35,36 +35,27 @@ export default function Contact() {
 
     // Map your React state to the variables in your EmailJS template
     const templateParams = {
-      from_name: formData.name,
-      reply_to: formData.email,
-      message: formData.message,
+      name: formData.name, 
+      email: formData.email, 
+      message: formData.message, 
     };
 
     // Use emailjs.send() instead of sendForm()
-    emailjs
-      .send(
-        serviceID, 
-        templateID, 
-        templateParams, 
-        publicKey,
-      )
-      .then(
-        (result) => {
-          setStatusType("success");
-          setResultMessage(
-            "Thank you! Your message has been sent successfully.",
-          );
-          // Clear the form fields by resetting state
-          setFormData({ name: "", email: "", message: "" });
-          setIsSubmitting(false);
-        },
-        (error) => {
-          console.error(error.text);
-          setStatusType("error");
-          setResultMessage("Something went wrong. Please try again later.");
-          setIsSubmitting(false);
-        },
-      );
+    emailjs.send(serviceID, templateID, templateParams, publicKey).then(
+      (result) => {
+        setStatusType("success");
+        setResultMessage("Thank you! Your message has been sent successfully.");
+        // Clear the form fields by resetting state
+        setFormData({ name: "", email: "", message: "" });
+        setIsSubmitting(false);
+      },
+      (error) => {
+        console.error(error.text);
+        setStatusType("error");
+        setResultMessage("Something went wrong. Please try again later.");
+        setIsSubmitting(false);
+      },
+    );
   };
 
   return (
