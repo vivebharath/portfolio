@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Download, Send, CheckCircle, AlertCircle } from "lucide-react";
 
 export default function Contact() {
-  // 1. Manage form input state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-    time:""
   });
 
-  // 2. Manage submission status state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resultMessage, setResultMessage] = useState("");
-  const [statusType, setStatusType] = useState(""); // "success" or "error"
+  const [statusType, setStatusType] = useState(""); 
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -24,30 +21,27 @@ export default function Contact() {
     }));
   };
 
-  // Handle form submission
   const sendEmail = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setStatusType("sending");
     setResultMessage("Sending your message...");
-    setStatusType("");
+    
     const serviceID = "service_p75mtec";
     const templateID = "template_bdgus0w";
     const publicKey = "CZN3GHE10X7yh6BWx";
 
-    // Map your React state to the variables in your EmailJS template
     const templateParams = {
-      name: formData.name, 
-      email: formData.email, 
-      message: formData.message, 
-      time: new Date().toLocaleString()
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      time: new Date().toLocaleString(),
     };
 
-    // Use emailjs.send() instead of sendForm()
     emailjs.send(serviceID, templateID, templateParams, publicKey).then(
       (result) => {
         setStatusType("success");
         setResultMessage("Thank you! Your message has been sent successfully.");
-        // Clear the form fields by resetting state
         setFormData({ name: "", email: "", message: "" });
         setIsSubmitting(false);
       },
@@ -61,40 +55,46 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 uppercase tracking-wider">
+    <section id="contact" className="py-24 px-6 bg-white text-slate-900">
+      <div className="max-w-2xl mx-auto">
+        
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-extrabold mb-4 uppercase tracking-wider text-slate-900">
             Contact
           </h2>
-          <div className="w-8 h-1 bg-blue-600 mx-auto rounded mb-4"></div>
-          <p className="text-gray-600 text-lg font-medium">
+          <div className="w-12 h-1.5 bg-blue-600 mx-auto rounded-full mb-4"></div>
+          <p className="text-gray-600 text-base font-medium leading-relaxed max-w-lg mx-auto">
             Feel free to contact me for job opportunities or collaborations. I
             will get back to you as soon as possible.
           </p>
         </div>
 
+        {/* Form Card */}
         <form
           onSubmit={sendEmail}
-          className="bg-white p-8 md:p-14 shadow-2xl rounded-lg space-y-8 border border-gray-100"
+          className="bg-white p-6 md:p-10 shadow-xl rounded-2xl space-y-6 border border-gray-100"
         >
-          {/* Notification Banner */}
+          {/* Notification Banner - CLEAN TEXT ONLY */}
           {resultMessage && (
             <div
-              className={`p-4 rounded font-medium text-center border ${
+              className={`p-4 rounded-xl border flex items-center gap-3 transition-all duration-300 text-sm ${
                 statusType === "success"
-                  ? "bg-green-50 border-green-200 text-green-700"
+                  ? "bg-emerald-50 border-emerald-200 text-emerald-800"
                   : statusType === "error"
-                    ? "bg-red-50 border-red-200 text-red-700"
-                    : "bg-blue-50 border-blue-200 text-blue-700"
+                    ? "bg-red-50 border-red-200 text-red-800"
+                    : "bg-blue-50 border-blue-200 text-blue-800"
               }`}
             >
-              {resultMessage}
+              {statusType === "success" && <CheckCircle className="text-emerald-600 shrink-0" size={20} />}
+              {statusType === "error" && <AlertCircle className="text-red-600 shrink-0" size={20} />}
+              <p className="font-semibold">{resultMessage}</p>
             </div>
           )}
 
+          {/* Form Fields */}
           <div>
-            <label className="block text-gray-700 font-bold mb-3 text-sm uppercase tracking-wide">
+            <label className="block text-gray-700 font-bold mb-2 text-xs uppercase tracking-wide">
               Name
             </label>
             <input
@@ -103,13 +103,13 @@ export default function Contact() {
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter Your Name"
-              className="w-full bg-gray-50 border border-gray-200 p-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700"
+              className="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm text-gray-700 transition"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-bold mb-3 text-sm uppercase tracking-wide">
+            <label className="block text-gray-700 font-bold mb-2 text-xs uppercase tracking-wide">
               Email
             </label>
             <input
@@ -118,37 +118,53 @@ export default function Contact() {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter Your Email"
-              className="w-full bg-gray-50 border border-gray-200 p-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700"
+              className="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm text-gray-700 transition"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-bold mb-3 text-sm uppercase tracking-wide">
+            <label className="block text-gray-700 font-bold mb-2 text-xs uppercase tracking-wide">
               Message
             </label>
             <textarea
-              rows="6"
+              rows="5"
               name="message"
               value={formData.message}
               onChange={handleChange}
               placeholder="Enter Your Message"
-              className="w-full bg-gray-50 border border-gray-200 p-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-700"
+              className="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm text-gray-700 transition resize-none"
               required
             ></textarea>
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`w-full text-white py-4 rounded font-bold transition shadow-md uppercase tracking-wider ${
-              isSubmitting
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            }`}
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </button>
+          {/* Action Buttons Row (Always Visible - No Duplicates) */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            {/* Send Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`flex-1 text-white py-3.5 rounded-xl font-bold transition-all shadow-md uppercase text-sm tracking-wider flex items-center justify-center gap-2 ${
+                isSubmitting
+                  ? "bg-gray-400 cursor-not-allowed shadow-none"
+                  : "bg-blue-600 hover:bg-blue-700 shadow-blue-600/10"
+              }`}
+            >
+              <Send size={16} />
+              {isSubmitting ? "Submitting..." : "Send Message"}
+            </button>
+
+            {/* Resume Download Button - Permanent & Clean */}
+            <a
+              href="/Vivek_Resume.pdf"
+              download="Vivek_Narasingaperumal_Resume.pdf"
+              className="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-3.5 rounded-xl font-bold transition-all shadow-md shadow-slate-900/10 uppercase text-sm tracking-wider flex items-center justify-center gap-2 text-center"
+            >
+              <Download size={16} />
+              Download Resume
+            </a>
+          </div>
+
         </form>
       </div>
     </section>

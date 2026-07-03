@@ -1,5 +1,5 @@
 export const personalInfo = {
-  name: "XYZ",
+  name: "Vivek Narasingaperumal",
   initials: "VN",
   email: "vivebharath@gmail.com",
   heroHeading: "HEY, I'M Jhon",
@@ -28,27 +28,76 @@ export const aboutData = {
 
 export const projectsData = [
   {
-    title: 'Valeo WINGS',
-    description: 'A web-based application supporting the upload and analysis of warranty claims and part returns from multiple OEMs, enabling Field Early Warning detection and parts failure analysis.',
-    tech: 'React, Redux, Node.js, Express, MongoDB',
-    iconName: 'Activity' 
+    id: 1,
+    title: "Valeo WINGS (Warranty Incidents Getting Solved)",
+    company: "Rappit - (Vanenburg Software)",
+    location: "CBE, India",
+    role: "Software Developer - Frontend",
+    duration: "Sep 2025 - Present",
+    environment: ["React", "Redux", "Node.js", "Express", "MongoDB", "REST APIs", "HTML-to-PDF Library"],
+    description: "A web-based enterprise application built for Valeo, a global automotive supplier headquartered in France. The application supports uploading and analyzing warranty claims and part returns from multiple OEMs, enabling Field Early Warning detection and parts failure analysis.",
+    responsibilities: [
+      "Implemented critical change requests and core feature enhancements based on evolving global customer requirements.",
+      "Fixed complex UI and functional logic bugs, ensuring application stability and an improved user experience.",
+      "Architected and engineered frontend modifications from scratch for newly requested features within the existing framework.",
+      "Collaborated closely with business stakeholders and backend engineering teams to transform technical requirements into timely solutions.",
+      "Integrated heavy frontend view changes with underlying RESTful APIs and systematically validated end-to-end data flow across modules.",
+      "Participated actively in team code reviews, maintaining pristine quality, maintainability, and adherence to project standards."
+    ]
   },
   {
-    title: 'Valeo VIM-HSE',
-    description: 'A centralized Incident Management Application to streamline the recording, tracking, and resolution of Health, Safety, and Environment (HSE) incidents. ',
-    tech: 'React, Node.js, MongoDB, REST APIs',
-    iconName: 'ShieldAlert' 
+    id: 2,
+    title: "Valeo VIM-HSE Incident Management",
+    company: "Rappit - (Vanenburg Software)",
+    location: "CBE, India",
+    role: "Software Developer - Full Stack / Frontend Lead",
+    duration: "Dec 2024 - Sep 2025",
+    environment: ["React", "Redux", "Node.js", "Express", "MongoDB", "REST APIs", "HTML-to-PDF Library"],
+    description: "A centralized Incident Management Application engineered for Valeo to streamline the recording, tracking, and resolution of Health, Safety, and Environment (HSE) incidents, ensuring strict regulatory compliance.",
+    responsibilities: [
+      "Served as a core team member and Frontend Lead, reviewing fellow frontend developers' code to enforce best practices.",
+      "Participated directly in requirement discussion meetings, customer interactions, and contributed heavily to database schema design.",
+      "Designed and developed highly consistent frontend master dashboards for Incident Safety, Incident Environment, and Occupational Disease modules.",
+      "Implemented comprehensive detail page workflows and data tracking patterns across all application modules.",
+      "Developed and maintained approximately 5 analytical dashboards to provide management with real-time insight into incident metrics.",
+      "Engineered major detail summaries alongside customized print configurations utilizing a specialized HTML-to-PDF library.",
+      "Built out robust backend CRUD operations for master data using highly efficient RESTful services.",
+      "Contributed to strategic sprint planning, executed successful User Acceptance Testing (UAT) support, and ensured on-time deployment."
+    ]
   },
   {
-    title: 'Valeo SCM',
-    description: 'A high-standard and user-friendly Sales Contract Document Management System. Integrated Google Drive Document Picker to enable users to select and share folders/files securely.',
-    tech: 'React, Node.js, Express, Firebase',
-    iconName: 'Files'   
+    id: 3,
+    title: "Valeo SCM (Sales Contract Document Management System)",
+    company: "Rappit - (Vanenburg Software)",
+    location: "CBE, India",
+    role: "Software Developer - Full Stack",
+    duration: "Apr 2024 - Dec 2024",
+    environment: ["React", "Redux", "Node.js", "Express", "Firebase"],
+    description: "A comprehensive governance and productivity application that transforms scattered physical and digital file storages into a structured, compliant, and risk-aware digital workspace.",
+    responsibilities: [
+      "Developed highly responsive and dynamic web interfaces using modern React.js architectures.",
+      "Implemented extensive CRUD endpoints and created optimized dashboard pages to manage, organize, and securely share data.",
+      "Integrated a native Google Drive Document Picker, enabling users to fluidly select and link external cloud files directly into the ecosystem.",
+      "Leveraged Google Cloud APIs alongside custom RESTful web services to support smooth background file indexing.",
+      "Worked extensively on secure frontend authentication logic, advanced date pickers, and dynamic lists to eliminate rendering layout shifts.",
+      "Participated in comprehensive, peer-to-peer code reviews to ensure long-term code quality and system maintainability."
+    ]
   },
   {
-    title: 'BitKey Homehub',
-    description: 'A dynamic Reservation Application featuring responsive user interfaces for Smart Lock Device Screens. Implemented CRUD operations to streamline the insertion of new buildings.',
-    tech: 'Java, SpringBoot, React, MySQL',
-    iconName: 'Home' 
+    id: 4,
+    title: "BitKey Homehub",
+    company: "Vaken Technologies Private Limited",
+    location: "Trichy, India",
+    role: "Junior Development Engineer",
+    duration: "Oct 2021 - Apr 2024",
+    environment: ["Java", "SpringBoot", "Microservices", "React", "Redux", "MySQL", "Firebase"],
+    description: "A high-standard, user-friendly dynamic reservation and ecosystem application built for smart lock security structures and modern property ecosystems.",
+    responsibilities: [
+      "Developed fluid and ultra-responsive user interfaces for Smart Lock Device Screens utilizing React.js layouts.",
+      "Programmed transactional CRUD microservices within the admin portal to streamline the insertion and indexing of new properties.",
+      "Collaborated side-by-side with UI/UX design teams to refine application interfaces for mobile and dashboard views.",
+      "Utilized optimized RESTful API queries to minimize server lookup workloads, enhancing overall application performance by 30%.",
+      "Participated in foundational code quality reviews to align code bases with robust engineering principles."
+    ]
   }
 ];
