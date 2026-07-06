@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main" ]
 
+# Global permissions fallback
 permissions:
   contents: read
   pages: write
@@ -14,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # JOB 1: Compile the project and upload the production build
+  # JOB 1: Compile and upload the production package
   build:
     runs-on: ubuntu-latest
     steps:
@@ -38,9 +39,12 @@ jobs:
         with:
           path: './dist'
 
-  # JOB 2: Grab the uploaded artifact and push it live to GitHub Pages
+  # JOB 2: Grab the uploaded artifact and push live with explicit access
   deploy:
-    needs: build # ⚠️ CRITICAL: Prevents deployment from starting until the build job completes successfully
+    needs: build
+    permissions:
+      pages: write      # 👈 Explicitly forces authorization on this runner instance
+      id-token: write   # 👈 Required for secure OIDC handoff token validation
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
