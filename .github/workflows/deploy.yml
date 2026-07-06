@@ -4,7 +4,6 @@ on:
   push:
     branches: [ "main" ]
 
-# Global permissions fallback
 permissions:
   contents: read
   pages: write
@@ -15,7 +14,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # JOB 1: Compile and upload the production package
   build:
     runs-on: ubuntu-latest
     steps:
@@ -34,17 +32,18 @@ jobs:
       - name: Build Project
         run: npm run build
 
+      # Updated collector block with an explicit name mapping
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages # Explicitly naming the channel breaks the cache lock
           path: './dist'
 
-  # JOB 2: Grab the uploaded artifact and push live with explicit access
   deploy:
     needs: build
     permissions:
-      pages: write      # 👈 Explicitly forces authorization on this runner instance
-      id-token: write   # 👈 Required for secure OIDC handoff token validation
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
