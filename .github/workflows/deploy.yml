@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main" ]
 
+# Global permissions required for the automated deployment token handoff
 permissions:
   contents: read
   pages: write
@@ -14,8 +15,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  # Single unified job with distinct build and deploy phases
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -26,29 +32,17 @@ jobs:
           node-version: 24
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
       - name: Build Project
         run: npm run build
 
-      # Updated collector block with an explicit name mapping
-      - name: Upload pages artifact
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages # Explicitly naming the channel breaks the cache lock
           path: './dist'
 
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
