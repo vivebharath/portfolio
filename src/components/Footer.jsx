@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Mail, Phone } from 'lucide-react';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import { personalInfo, socialLinks } from '../data/content';

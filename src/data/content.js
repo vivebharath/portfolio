@@ -1,5 +1,5 @@
 export const personalInfo = {
-    name: "Vivek Narasingaperumal",
+    name: "Jhon ",
     initials: "VN",
     email: "vivebharath@gmail.com",
     heroHeading: "HEY, I'M Jhon",

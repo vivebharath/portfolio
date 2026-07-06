@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Download, Send, CheckCircle, AlertCircle } from "lucide-react";
 
@@ -11,7 +11,7 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resultMessage, setResultMessage] = useState("");
-  const [statusType, setStatusType] = useState(""); 
+  const [statusType, setStatusType] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +26,7 @@ export default function Contact() {
     setIsSubmitting(true);
     setStatusType("sending");
     setResultMessage("Sending your message...");
-    
+
     const serviceID = "service_p75mtec";
     const templateID = "template_bdgus0w";
     const publicKey = "CZN3GHE10X7yh6BWx";
@@ -40,10 +40,14 @@ export default function Contact() {
 
     emailjs.send(serviceID, templateID, templateParams, publicKey).then(
       (result) => {
-        setStatusType("success");
-        setResultMessage("Thank you! Your message has been sent successfully.");
-        setFormData({ name: "", email: "", message: "" });
-        setIsSubmitting(false);
+        if (result) {
+          setStatusType("success");
+          setResultMessage(
+            "Thank you! Your message has been sent successfully.",
+          );
+          setFormData({ name: "", email: "", message: "" });
+          setIsSubmitting(false);
+        }
       },
       (error) => {
         console.error(error.text);
@@ -57,7 +61,6 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 px-6 bg-white text-slate-900">
       <div className="max-w-2xl mx-auto">
-        
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold mb-4 uppercase tracking-wider text-slate-900">
@@ -86,8 +89,12 @@ export default function Contact() {
                     : "bg-blue-50 border-blue-200 text-blue-800"
               }`}
             >
-              {statusType === "success" && <CheckCircle className="text-emerald-600 shrink-0" size={20} />}
-              {statusType === "error" && <AlertCircle className="text-red-600 shrink-0" size={20} />}
+              {statusType === "success" && (
+                <CheckCircle className="text-emerald-600 shrink-0" size={20} />
+              )}
+              {statusType === "error" && (
+                <AlertCircle className="text-red-600 shrink-0" size={20} />
+              )}
               <p className="font-semibold">{resultMessage}</p>
             </div>
           )}
@@ -155,16 +162,15 @@ export default function Contact() {
             </button>
 
             {/* Resume Download Button - Permanent & Clean */}
-            <a
-              href="/Vivek_Resume.pdf"
+            {/* <a
+              href={`${import.meta.env.BASE_URL}Vivek_Resume.pdf`}
               download="Vivek_Narasingaperumal_Resume.pdf"
               className="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-3.5 rounded-xl font-bold transition-all shadow-md shadow-slate-900/10 uppercase text-sm tracking-wider flex items-center justify-center gap-2 text-center"
             >
               <Download size={16} />
               Download Resume
-            </a>
+            </a> */}
           </div>
-
         </form>
       </div>
     </section>
