@@ -14,32 +14,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # JOB 1: Compile the project and upload the production build
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Project
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # Native Pages collector
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
 
+  # JOB 2: Grab the uploaded artifact and push it live to GitHub Pages
+  deploy:
+    needs: build # ⚠️ CRITICAL: Prevents deployment from starting until the build job completes successfully
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # Aligned deployment block
+        uses: actions/deploy-pages@v4
